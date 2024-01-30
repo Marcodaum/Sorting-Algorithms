@@ -17,7 +17,7 @@ quicksort [] = []
 quicksort (x:xs) = (quicksort smaller) ++ [x] ++ (quicksort bigger)
             where
                 smaller = [y |y <- xs, y <= x]
-                bigger = [y | y <- xs, y > x]
+                bigger  = [y | y <- xs, y > x]
 
 
 -- Insertionsort
@@ -28,7 +28,7 @@ insertionsort (x:xs) = inssort x (insertionsort xs)
         inssort :: Ord a => a -> [a] -> [a]
         inssort a [] = [a]
         inssort x (y:ys) | x <= y = x:y:ys
-                          | otherwise = y : (inssort x ys)
+                         | otherwise = y : (inssort x ys)
 
 
 -- Binarysort
@@ -64,10 +64,10 @@ bubblesort xs = loop xs 0
     where 
         loop :: Ord a => [a] -> Int -> [a]
         loop (x:xs) a | a >= (length (x:xs) - 1) = (x:xs)
-                            | otherwise = loop (change (x:xs)) (a+1)
+                      | otherwise = loop (change (x:xs)) (a+1)
             where 
                 change :: Ord a => [a] -> [a]
                 change [] =  []
                 change [a] = [a]
                 change (x:y:xs) | x <= y = x:(change (y:xs))
-                                    | otherwise = y:(change (x:xs))
+                                | otherwise = y:(change (x:xs))
