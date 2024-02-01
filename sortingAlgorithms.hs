@@ -57,17 +57,8 @@ binarysort xs = flatten (list2tree xs)
 
 
 -- Bubblesort
-bubblesort :: Ord a => [a] -> [a]
-bubblesort [] = []
-bubblesort [x] = [x]
-bubblesort xs = loop xs 0
-    where 
-        loop :: Ord a => [a] -> Int -> [a]
-        loop (x:xs) a | a >= (length (x:xs) - 1) = (x:xs)
-                      | otherwise = loop (change (x:xs)) (a+1)
-            where 
-                change :: Ord a => [a] -> [a]
-                change [] =  []
-                change [a] = [a]
-                change (x:y:xs) | x <= y = x:(change (y:xs))
-                                | otherwise = y:(change (x:xs))
+bubblesorty :: Ord a => [a] -> [a]
+bubblesorty [] = []
+bubblesorty [x] = [x]
+bubblesorty (x:y:xs) | x < y = bubblesort (x:(bubblesort (y:xs)))
+                     | x >= y = bubblesort (y:(bubblesort (x:xs)))
